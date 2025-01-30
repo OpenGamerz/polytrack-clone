@@ -1,11 +1,8 @@
-// Define cache names
 const CACHE_NAME = "polytrack-cache-v1";
-
-// List of assets to precache
 const PRECACHE_ASSETS = [
   "/index.html",
   "/main.bundle.js",
-  "/simulation_worker.bundle.js",  // Fixed missing comma
+  "/simulation_worker.bundle.js",
   "/README.md",
   "/manifest.json",
   "/forcedsquare.json",
@@ -107,26 +104,38 @@ self.addEventListener("activate", event => {
       );
     })
   );
-  // Ensuring the service worker takes control of the page immediately
   self.clients.claim();
 });
 
 // Fetch event - serve from cache or fetch from network
 self.addEventListener("fetch", event => {
+  // Match requests in cache
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) {
-        return cachedResponse;
+        return cachedResponse;  // Serve from cache if found
       }
 
+      // Otherwise, try to fetch from the network
       return fetch(event.request).then(networkResponse => {
+        // If the network response is successful, cache it for future use
         return caches.open(CACHE_NAME).then(cache => {
-          // Cache the new response for future requests
           if (networkResponse && networkResponse.status === 200) {
             cache.put(event.request, networkResponse.clone());
           }
-          return networkResponse;
+          return networkResponse;  // Return the network response
         });
+      }).catch(err => {
+        // Network is unavailable (offline mode), return fallback or nothing.
+        console.log("Fetch failed; returning fallback", err);
+        
+        // If you want to ensure that assets are still served even when offline,
+        // you should cache them during install, or do a more complex fallback.
+        // For example, for images, JS, CSS, etc., you'd want to have cached resources.
+        
+        // If you want to return nothing on failure (just keep empty responses),
+        // you can do something like:
+        // return new Response('Offline', {status: 503});
       });
     })
   );
