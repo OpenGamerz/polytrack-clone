@@ -10,15 +10,6 @@
 		<div id="transition-layer"></div>
 
 		<script type="module" src="main.bundle.js" defer></script>
-
-		<!-- Service Worker Registration -->
-		<script>
-			if ("serviceWorker" in navigator) {
-				navigator.serviceWorker.register("/service-worker.js")
-					.then(() => console.log("Service Worker Registered"))
-					.catch(err => console.error("Service Worker Registration Failed:", err));
-			}
-		</script>
 	</body>
 </html>
 
