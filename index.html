@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<link rel="manifest" href="manifest.json" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-	</head>
-	<body>
-		<canvas id="screen"></canvas>
-		<div id="ui"></div>
-		<div id="transition-layer"></div>
-
-		<script type="module" src="main.bundle.js" defer></script>
-	</body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Login with Firebase</title>
+    <script type="module" src="auth.js"></script>
+</head>
+<body>
+    <h2>Google Login with Firebase</h2>
+    <button id="google-login">Login with Google</button>
+    <button id="google-logout" style="display: none;">Logout</button>
+    <p id="user-info"></p>
+</body>
 </html>
-
