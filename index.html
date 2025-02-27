@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="manifest" href="manifest.json" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-	</head>
-	<body>
-		<canvas id="screen"></canvas>
-		<div id="ui"></div>
-		<div id="transition-layer"></div>
+<head>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        #loading-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="screen"></canvas>
+    <div id="ui"></div>
+    <div id="transition-layer"></div>
 
-		<script type="module" src="main.bundle.js" defer></script>
-	</body>
+    <div id="loading-message">🔊 This game was brought to you by ANONYMOUS at the Mason High School!</div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('loading-message').style.display = 'none';
+        }, 5000);
+    </script>
+    
+    <script type="module" src="main.bundle.js" defer></script>
+</body>
 </html>
