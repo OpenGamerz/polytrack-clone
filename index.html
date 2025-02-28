@@ -22,15 +22,13 @@
     <canvas id="screen"></canvas>
     <div id="ui"></div>
     <div id="transition-layer"></div>
-
-    <div id="loading-message">🔊 This game was brought to you by ANONYMOUS at the Mason High School!</div>
+    <script type="module" src="main.bundle.js" defer></script>
+        <div id="loading-message">🔊 This game was brought to you by ANONYMOUS at the Mason High School!</div>
 
     <script>
         setTimeout(() => {
             document.getElementById('loading-message').style.display = 'none';
         }, 10000);
     </script>
-    
-    <script type="module" src="main.bundle.js" defer></script>
 </body>
 </html>
