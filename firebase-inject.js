@@ -63,15 +63,15 @@ function loadGameData(userId) {
 // Automatically check login state and load/save data once
 onAuthStateChanged(auth, (user) => {
     if (user) {
+        document.getElementById("login-button").style.display = "none";
         loadGameData(user.uid); // Load game data once
     }
 });
 
-// Add Google Sign-In button to the page
+// Ensure the login button works
 document.addEventListener("DOMContentLoaded", () => {
-    const loginButton = document.createElement("button");
-    loginButton.id = "login-button";
-    loginButton.innerText = "Sign in with Google";
-    loginButton.onclick = signInWithGoogle;
-    document.body.appendChild(loginButton);
+    const loginButton = document.getElementById("login-button");
+    if (loginButton) {
+        loginButton.addEventListener("click", signInWithGoogle);
+    }
 });
